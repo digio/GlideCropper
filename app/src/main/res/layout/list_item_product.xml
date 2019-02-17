@@ -9,6 +9,7 @@
         android:id="@+id/productImage"
         android:layout_width="match_parent"
         android:layout_height="150dp"
+        android:layout_marginBottom="5dp"
         app:horizontalOffset="200dp"
         app:verticalOffset="500dp"/>
 
