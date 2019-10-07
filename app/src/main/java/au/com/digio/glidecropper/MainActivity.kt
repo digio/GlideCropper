@@ -20,7 +20,9 @@ class MainActivity : AppCompatActivity() {
         const val PRODUCT_KEY = "product"
     }
 
-    private val products = listOf(
+    // These pictures selected from Unsplash are a lot larger than required but demonstrate the cropping and translation
+    // image manipulation at load time.
+    private val productsSeed = listOf(
             Product(R.drawable.la_so_512424_unsplash,
                     "Village Gelati",
                     "Donec consequat vehicula velit, in posuere nulla dapibus quis.  amet nisl",
@@ -32,7 +34,7 @@ class MainActivity : AppCompatActivity() {
             Product(R.drawable.meric_dagli_1112362_unsplash,
                     "Pumpkin Empire",
                     "Vivamus rutrum enim sem. Fusce tempor, velit et egestas faucibus tortor.",
-                    R.color.blue),
+                    R.color.purple),
             Product(R.drawable.tom_gainor_737280_unsplash,
                     "Lake Drift",
                     "Sapien risus euismod massa, sed suscipit tellus enim sit Proin fermentum.",
@@ -43,6 +45,15 @@ class MainActivity : AppCompatActivity() {
                     R.color.white)
 
     )
+
+    private val products = mutableListOf<Product>()
+
+    init {
+        // Add a few screenful of items to allow for scrolling
+        for (i in 1..10) {
+            products.addAll(productsSeed)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
