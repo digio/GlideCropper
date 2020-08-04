@@ -8,23 +8,23 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.data.DataFetcher;
 
-public class CroppedImageDataFetcher2 implements DataFetcher<CroppedImageDecoderInput2> {
+public class CroppedImageDataFetcher implements DataFetcher<CroppedImageDecoderInput> {
     private Resources resources;
-    private CroppedImage2 model;
+    private CroppedImage model;
 
-    public CroppedImageDataFetcher2(Resources resources, CroppedImage2 model) {
+    public CroppedImageDataFetcher(Resources resources, CroppedImage model) {
         this.resources = resources;
         this.model = model;
     }
 
     @Override
-    public void loadData(@NonNull Priority priority, @NonNull DataCallback<? super CroppedImageDecoderInput2> callback) {
-        CroppedImageDecoderInput2 intermediate = new CroppedImageDecoderInput2(
+    public void loadData(@NonNull Priority priority, @NonNull DataCallback<? super CroppedImageDecoderInput> callback) {
+        CroppedImageDecoderInput intermediate = new CroppedImageDecoderInput(
                 model.resId,
-                model.viewHeight,
                 model.viewWidth,
-                model.verticalOffset,
-                model.horizontalOffset);
+                model.viewHeight,
+                model.horizontalOffset,
+                model.verticalOffset);
         callback.onDataReady(intermediate);
     }
 
@@ -40,8 +40,8 @@ public class CroppedImageDataFetcher2 implements DataFetcher<CroppedImageDecoder
 
     @NonNull
     @Override
-    public Class<CroppedImageDecoderInput2> getDataClass() {
-        return CroppedImageDecoderInput2.class;
+    public Class<CroppedImageDecoderInput> getDataClass() {
+        return CroppedImageDecoderInput.class;
     }
 
     @NonNull

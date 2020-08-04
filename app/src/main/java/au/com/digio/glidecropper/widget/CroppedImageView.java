@@ -9,9 +9,9 @@ import androidx.appcompat.widget.AppCompatImageView;
 import com.bumptech.glide.Glide;
 
 import au.com.digio.glidecropper.R;
-import au.com.digio.glidecropper.glide.CroppedImage2;
+import au.com.digio.glidecropper.glide.CroppedImage;
 
-public class CroppedImageView2 extends AppCompatImageView {
+public class CroppedImageView extends AppCompatImageView {
 
     private Context context;
     private int horizontalOffset = 0;
@@ -19,11 +19,11 @@ public class CroppedImageView2 extends AppCompatImageView {
     private int resId = 0;
     private boolean loadRequested = false;
 
-    public CroppedImageView2(Context context) {
+    public CroppedImageView(Context context) {
         super(context);
     }
 
-    public CroppedImageView2(Context context, AttributeSet attrs) {
+    public CroppedImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         this.context = context;
@@ -34,8 +34,15 @@ public class CroppedImageView2 extends AppCompatImageView {
         ats.recycle();
     }
 
-    public CroppedImageView2(Context context, AttributeSet attrs, int defStyleAttr) {
+    public CroppedImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+
+        this.context = context;
+        setScaleType(ScaleType.FIT_XY);
+        TypedArray ats = context.getTheme().obtainStyledAttributes(attrs, R.styleable.CroppedImageView, 0, 0);
+        horizontalOffset = ats.getDimensionPixelOffset(R.styleable.CroppedImageView_horizontalOffset, 0);
+        verticalOffset = ats.getDimensionPixelOffset(R.styleable.CroppedImageView_verticalOffset, 0);
+        ats.recycle();
     }
 
     @Override
@@ -60,14 +67,14 @@ public class CroppedImageView2 extends AppCompatImageView {
             return;
         }
         loadRequested = true; // Don't trigger multiple loads for the same resource
-        CroppedImage2 model = new CroppedImage2(resId, getWidth(), getHeight(), horizontalOffset,
+        CroppedImage model = new CroppedImage(resId, getWidth(), getHeight(), horizontalOffset,
                 verticalOffset);
         Glide.with(context)
                 .load(model)
                 .into(this);
     }
 
-    void clear() {
+    public void clear() {
         // Stop any in-progress image loading
         Glide.with(context).clear(this);
     }

@@ -18,22 +18,22 @@ import com.bumptech.glide.load.resource.SimpleResource;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class CroppedBitmapDecoder2 implements ResourceDecoder<CroppedImageDecoderInput2, BitmapDrawable> {
+public class CroppedBitmapDecoder implements ResourceDecoder<CroppedImageDecoderInput, BitmapDrawable> {
 
     private Resources resources;
 
-    public CroppedBitmapDecoder2(Resources resources) {
+    public CroppedBitmapDecoder(Resources resources) {
         this.resources = resources;
     }
 
     @Override
-    public boolean handles(@NonNull CroppedImageDecoderInput2 source, @NonNull Options options) throws IOException {
+    public boolean handles(@NonNull CroppedImageDecoderInput source, @NonNull Options options) throws IOException {
         return true;
     }
 
     @Nullable
     @Override
-    public Resource<BitmapDrawable> decode( @NonNull CroppedImageDecoderInput2 source,
+    public Resource<BitmapDrawable> decode( @NonNull CroppedImageDecoderInput source,
                                             int width,
                                             int height,
                                             @NonNull Options options) throws IOException {
@@ -51,8 +51,8 @@ public class CroppedBitmapDecoder2 implements ResourceDecoder<CroppedImageDecode
 
         // Determine the image's height and width
         BitmapFactory.decodeResource(resources, source.resId, bitmapOptions);
-        float imageHeight = bitmapOptions.outHeight;
-        float imageWidth = bitmapOptions.outWidth;
+        int imageHeight = bitmapOptions.outHeight;
+        int imageWidth = bitmapOptions.outWidth;
 
         // This results in a bitmap that is exactly sized to the ImageView’s height and width,
         // rather than the much larger image file’s height and width for the normal decoder
@@ -65,8 +65,8 @@ public class CroppedBitmapDecoder2 implements ResourceDecoder<CroppedImageDecode
             // Ensure the cropping and translation region doesn't exceed the image dimensions
             Rect region = new Rect(source.horizontalOffset,
                     source.verticalOffset,
-                    (int) Math.min(source.viewWidth + source.horizontalOffset, imageWidth),
-                    (int) Math.min(source.viewHeight + source.verticalOffset, imageHeight));
+                    Math.min(source.viewWidth + source.horizontalOffset, imageWidth),
+                    Math.min(source.viewHeight + source.verticalOffset, imageHeight));
 
             // Decode image content within the cropping region
             bitmapOptions.inJustDecodeBounds = false;

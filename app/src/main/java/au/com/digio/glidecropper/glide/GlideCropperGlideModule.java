@@ -25,15 +25,15 @@ import com.bumptech.glide.module.AppGlideModule;
  */
 
 @GlideModule
-public class GlideCropperGlideModule2 extends AppGlideModule {
+public class GlideCropperGlideModule extends AppGlideModule {
 
     @Override
     public void registerComponents(@NonNull Context context, @NonNull Glide glide, @NonNull Registry registry) {
         super.registerComponents(context, glide, registry);
-        registry.prepend(CroppedImage2.class, CroppedImageDecoderInput2.class,
-                new CroppedImageModelLoaderFactory2(context.getResources()))
+        registry.prepend(CroppedImage.class, CroppedImageDecoderInput.class,
+                new CroppedImageModelLoaderFactory(context.getResources()))
 
-                .prepend(CroppedImageDecoderInput2.class, BitmapDrawable.class,
-                new CroppedBitmapDecoder2(context.getResources()));
+                .prepend(CroppedImageDecoderInput.class, BitmapDrawable.class,
+                new CroppedBitmapDecoder(context.getResources()));
     }
 }

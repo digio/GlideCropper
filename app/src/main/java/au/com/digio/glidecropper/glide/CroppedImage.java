@@ -2,14 +2,14 @@ package au.com.digio.glidecropper.glide;
 
 import java.util.Objects;
 
-public class CroppedImage2 {
+public class CroppedImage {
     public int resId;
     public int viewWidth;
     public int viewHeight;
     public int horizontalOffset = 0;
     public int verticalOffset = 0;
 
-    public CroppedImage2(int resId, int viewWidth, int viewHeight, int horizontalOffset, int verticalOffset) {
+    public CroppedImage(int resId, int viewWidth, int viewHeight, int horizontalOffset, int verticalOffset) {
         this.resId = resId;
         this.viewWidth = viewWidth;
         this.viewHeight = viewHeight;
@@ -22,7 +22,7 @@ public class CroppedImage2 {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CroppedImage2 that = (CroppedImage2) o;
+        CroppedImage that = (CroppedImage) o;
         return resId == that.resId &&
                 viewWidth == that.viewWidth &&
                 viewHeight == that.viewHeight &&

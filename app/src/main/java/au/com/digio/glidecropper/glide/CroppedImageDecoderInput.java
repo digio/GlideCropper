@@ -11,14 +11,14 @@ import androidx.annotation.RawRes;
  * The built-in input types Glide supports for decoding (InputStream and ByteBuffer) do not provide enough context
  * for us to do the cropping and trimming work, hence this custom input source.
  */
-public class CroppedImageDecoderInput2 {
+public class CroppedImageDecoderInput {
     public @RawRes int resId;
     public int viewWidth;
     public int viewHeight;
     public int horizontalOffset = 0;
     public int verticalOffset = 0;
 
-    public CroppedImageDecoderInput2(int resId, int viewWidth, int viewHeight, int horizontalOffset, int verticalOffset) {
+    public CroppedImageDecoderInput(int resId, int viewWidth, int viewHeight, int horizontalOffset, int verticalOffset) {
         this.resId = resId;
         this.viewWidth = viewWidth;
         this.viewHeight = viewHeight;

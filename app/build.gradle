@@ -8,7 +8,7 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "au.com.digio.glidecropper"
-        minSdkVersion 21
+        minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -30,9 +30,9 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 
     // dependencies for this Demonstration
-    implementation 'com.github.bumptech.glide:glide:4.9.0'
-    kapt 'com.github.bumptech.glide:compiler:4.9.0'
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'org.jetbrains.anko:anko-common:0.10.3'
 
     testImplementation 'junit:junit:4.12'

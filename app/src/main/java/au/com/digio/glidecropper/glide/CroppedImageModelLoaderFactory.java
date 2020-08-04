@@ -13,18 +13,18 @@ import com.bumptech.glide.load.model.MultiModelLoaderFactory;
  * Glide model loader factory for Cropped Image Model loaders.
  */
 
-public class CroppedImageModelLoaderFactory2 implements ModelLoaderFactory<CroppedImage2, CroppedImageDecoderInput2> {
+public class CroppedImageModelLoaderFactory implements ModelLoaderFactory<CroppedImage, CroppedImageDecoderInput> {
 
     private Resources resources;
 
-    public CroppedImageModelLoaderFactory2(Resources resources){
+    public CroppedImageModelLoaderFactory(Resources resources){
         this.resources = resources;
     }
 
     @NonNull
     @Override
-    public ModelLoader<CroppedImage2, CroppedImageDecoderInput2> build(@NonNull MultiModelLoaderFactory multiFactory) {
-        return new CroppedImageModelLoader2(resources);
+    public ModelLoader<CroppedImage, CroppedImageDecoderInput> build(@NonNull MultiModelLoaderFactory multiFactory) {
+        return new CroppedImageModelLoader(resources);
     }
 
     @Override
