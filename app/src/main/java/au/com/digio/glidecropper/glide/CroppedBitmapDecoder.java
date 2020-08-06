@@ -1,11 +1,13 @@
 package au.com.digio.glidecropper.glide;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapRegionDecoder;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,15 +17,16 @@ import com.bumptech.glide.load.ResourceDecoder;
 import com.bumptech.glide.load.engine.Resource;
 import com.bumptech.glide.load.resource.SimpleResource;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class CroppedBitmapDecoder implements ResourceDecoder<CroppedImageDecoderInput, BitmapDrawable> {
+public class CroppedBitmapDecoder implements ResourceDecoder<CroppedImageDecoderInput, Bitmap> {
 
-    private Resources resources;
+    private Context context;
 
-    public CroppedBitmapDecoder(Resources resources) {
-        this.resources = resources;
+    public CroppedBitmapDecoder(Context context) {
+        this.context = context;
     }
 
     @Override
@@ -33,7 +36,7 @@ public class CroppedBitmapDecoder implements ResourceDecoder<CroppedImageDecoder
 
     @Nullable
     @Override
-    public Resource<BitmapDrawable> decode( @NonNull CroppedImageDecoderInput source,
+    public Resource<Bitmap> decode( @NonNull CroppedImageDecoderInput source,
                                             int width,
                                             int height,
                                             @NonNull Options options) throws IOException {
@@ -50,16 +53,26 @@ public class CroppedBitmapDecoder implements ResourceDecoder<CroppedImageDecoder
         // see Glide's Downsampler.java for implementation details.
 
         // Determine the image's height and width
-        BitmapFactory.decodeResource(resources, source.resId, bitmapOptions);
+//        BitmapFactory.decodeFile(source.uri.toString() , bitmapOptions);
+
+        try {
+            inputStream = context.getContentResolver().openInputStream(source.uri);
+            BitmapFactory.decodeStream(inputStream, null, bitmapOptions);
+        } catch (FileNotFoundException e) {
+            // do something
+        }
+
         int imageHeight = bitmapOptions.outHeight;
         int imageWidth = bitmapOptions.outWidth;
+
+        bitmapOptions.inJustDecodeBounds = false;
 
         // This results in a bitmap that is exactly sized to the ImageView’s height and width,
         // rather than the much larger image file’s height and width for the normal decoder
         // (or downsampled if required — see Glide’s Downsampler.java for details)
 
         try {
-            inputStream = resources.openRawResource(source.resId);
+            inputStream = context.getContentResolver().openInputStream(source.uri);
             decoder = BitmapRegionDecoder.newInstance(inputStream, false);
 
             // Ensure the cropping and translation region doesn't exceed the image dimensions
@@ -69,14 +82,12 @@ public class CroppedBitmapDecoder implements ResourceDecoder<CroppedImageDecoder
                     Math.min(source.viewHeight + source.verticalOffset, imageHeight));
 
             // Decode image content within the cropping region
-            bitmapOptions.inJustDecodeBounds = false;
             bitmap = decoder.decodeRegion(region, bitmapOptions);
         } finally {
             inputStream.close();
             decoder.recycle();
         }
 
-        BitmapDrawable drawable = new BitmapDrawable(resources, bitmap);
-        return new SimpleResource<BitmapDrawable>(drawable);
+        return new SimpleResource<>(bitmap);
     }
 }

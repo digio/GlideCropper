@@ -7,14 +7,39 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/productList"
-        android:background="@color/separator"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+    <au.com.digio.glidecropper.widget.CroppedImageView
+        android:id="@+id/productImage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="150dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/colorPrimary"
+        app:horizontalOffset="500dp"
+        app:verticalOffset="200dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/testImage"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/colorAccent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/button"
+        />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginBottom="15dp"
+        android:onClick="selectPhoto"
+        android:text="Choose a photo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

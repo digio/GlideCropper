@@ -1,6 +1,6 @@
 package au.com.digio.glidecropper.glide;
 
-import androidx.annotation.RawRes;
+import android.net.Uri;
 
 /**
  * This is a custom Glide input source for loading images that require cropping and translating prior to display.
@@ -12,14 +12,14 @@ import androidx.annotation.RawRes;
  * for us to do the cropping and trimming work, hence this custom input source.
  */
 public class CroppedImageDecoderInput {
-    public @RawRes int resId;
+    public Uri uri;
     public int viewWidth;
     public int viewHeight;
     public int horizontalOffset = 0;
     public int verticalOffset = 0;
 
-    public CroppedImageDecoderInput(int resId, int viewWidth, int viewHeight, int horizontalOffset, int verticalOffset) {
-        this.resId = resId;
+    public CroppedImageDecoderInput(Uri uri, int viewWidth, int viewHeight, int horizontalOffset, int verticalOffset) {
+        this.uri = uri;
         this.viewWidth = viewWidth;
         this.viewHeight = viewHeight;
         this.horizontalOffset = horizontalOffset;

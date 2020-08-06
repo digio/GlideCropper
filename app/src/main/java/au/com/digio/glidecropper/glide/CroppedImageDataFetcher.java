@@ -1,6 +1,6 @@
 package au.com.digio.glidecropper.glide;
 
-import android.content.res.Resources;
+import android.content.Context;
 
 import androidx.annotation.NonNull;
 
@@ -9,20 +9,20 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.data.DataFetcher;
 
 public class CroppedImageDataFetcher implements DataFetcher<CroppedImageDecoderInput> {
-    private Resources resources;
+    private Context context;
     private CroppedImage model;
 
-    public CroppedImageDataFetcher(Resources resources, CroppedImage model) {
-        this.resources = resources;
+    public CroppedImageDataFetcher(Context context, CroppedImage model) {
+        this.context = context;
         this.model = model;
     }
 
     @Override
     public void loadData(@NonNull Priority priority, @NonNull DataCallback<? super CroppedImageDecoderInput> callback) {
         CroppedImageDecoderInput intermediate = new CroppedImageDecoderInput(
-                model.resId,
-                model.viewWidth,
-                model.viewHeight,
+                model.uri,
+                model.imageWidth,
+                model.imageHeight,
                 model.horizontalOffset,
                 model.verticalOffset);
         callback.onDataReady(intermediate);

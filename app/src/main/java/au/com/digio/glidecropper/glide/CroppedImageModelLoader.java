@@ -1,6 +1,6 @@
 package au.com.digio.glidecropper.glide;
 
-import android.content.res.Resources;
+import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,10 +11,10 @@ import com.bumptech.glide.signature.ObjectKey;
 
 public final class CroppedImageModelLoader implements ModelLoader<CroppedImage, CroppedImageDecoderInput> {
 
-    private Resources resources;
+    private Context context;
 
-    public CroppedImageModelLoader(Resources resources) {
-        this.resources = resources;
+    public CroppedImageModelLoader(Context context) {
+        this.context = context;
     }
 
     @Nullable
@@ -24,7 +24,7 @@ public final class CroppedImageModelLoader implements ModelLoader<CroppedImage, 
                                                             int height,
                                                             @NonNull Options options) {
         return new LoadData<CroppedImageDecoderInput>(new ObjectKey(model),
-        new CroppedImageDataFetcher(resources, model));
+        new CroppedImageDataFetcher(context, model));
     }
 
     @Override

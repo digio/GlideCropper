@@ -1,6 +1,7 @@
 package au.com.digio.glidecropper.glide;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 
 import androidx.annotation.NonNull;
@@ -31,9 +32,9 @@ public class GlideCropperGlideModule extends AppGlideModule {
     public void registerComponents(@NonNull Context context, @NonNull Glide glide, @NonNull Registry registry) {
         super.registerComponents(context, glide, registry);
         registry.prepend(CroppedImage.class, CroppedImageDecoderInput.class,
-                new CroppedImageModelLoaderFactory(context.getResources()))
+                new CroppedImageModelLoaderFactory(context))
 
-                .prepend(CroppedImageDecoderInput.class, BitmapDrawable.class,
-                new CroppedBitmapDecoder(context.getResources()));
+                .prepend(CroppedImageDecoderInput.class, Bitmap.class,
+                new CroppedBitmapDecoder(context));
     }
 }
