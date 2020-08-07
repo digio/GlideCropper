@@ -69,7 +69,7 @@ public class CroppedImageView extends AppCompatImageView {
         }
         loadRequested = true; // Don't trigger multiple loads for the same resource
         CroppedImage model = new CroppedImage(uri, getWidth(), getHeight(), horizontalOffset,
-                verticalOffset);
+                verticalOffset, getWidth());
         Glide.with(context)
                 .load(model)
                 .into(this);

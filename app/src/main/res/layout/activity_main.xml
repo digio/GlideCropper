@@ -9,12 +9,12 @@
 
     <au.com.digio.glidecropper.widget.CroppedImageView
         android:id="@+id/productImage"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
         android:layout_marginBottom="5dp"
         android:background="@color/colorPrimary"
-        app:horizontalOffset="500dp"
-        app:verticalOffset="200dp"
+        app:horizontalOffset="0dp"
+        app:verticalOffset="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>

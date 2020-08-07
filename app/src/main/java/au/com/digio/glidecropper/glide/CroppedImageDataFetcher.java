@@ -24,7 +24,8 @@ public class CroppedImageDataFetcher implements DataFetcher<CroppedImageDecoderI
                 model.imageWidth,
                 model.imageHeight,
                 model.horizontalOffset,
-                model.verticalOffset);
+                model.verticalOffset,
+                model.desImageWidth);
         callback.onDataReady(intermediate);
     }
 

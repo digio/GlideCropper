@@ -17,12 +17,15 @@ public class CroppedImageDecoderInput {
     public int viewHeight;
     public int horizontalOffset = 0;
     public int verticalOffset = 0;
+    public int desImageWidth;
 
-    public CroppedImageDecoderInput(Uri uri, int viewWidth, int viewHeight, int horizontalOffset, int verticalOffset) {
+    public CroppedImageDecoderInput(Uri uri, int viewWidth, int viewHeight, int horizontalOffset,
+                                    int verticalOffset, int desImageWidth) {
         this.uri = uri;
         this.viewWidth = viewWidth;
         this.viewHeight = viewHeight;
         this.horizontalOffset = horizontalOffset;
         this.verticalOffset = verticalOffset;
+        this.desImageWidth = desImageWidth;
     }
 }
