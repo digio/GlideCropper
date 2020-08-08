@@ -54,6 +54,8 @@ public class CroppedImageView extends AppCompatImageView {
         }
     }
 
+    // This will not be used but left here in case in the future I wanted to readd this feature
+    // to the GlideApp
     @Override
     public void setImageResource(int resId) {
         this.resId = resId;
